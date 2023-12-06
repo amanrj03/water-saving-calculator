@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Water Savings Calculator</title>
+  <style>
+    body {
+  font-family: 'Arial', sans-serif;
+  margin: 20px;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  color: #333;
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#results {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+  </style>
+</head>
+<body>
+  <h1>Water Savings Calculator</h1>
+  <form id="waterSavingsForm">
+    <label for="location">Location:</label>
+    <input type="text" id="location" required>
+    
+    <label for="rainfall">Average Annual Rainfall (in mm):</label>
+    <input type="number" id="rainfall" required>
+    
+    <label for="propertySize">Property Size (in sq. ft):</label>
+    <input type="number" id="propertySize" required>
+
+    <label for="waterUsage">Water Usage (gallons per day):</label>
+    <input type="number" id="waterUsage" required>
+
+    <label for="harvestingTechniques">Water Harvesting Techniques:</label>
+    <select id="harvestingTechniques" multiple>
+      <option value="rainwaterHarvesting">Rainwater Harvesting</option>
+      <option value="greywaterHarvesting">Greywater Harvesting</option>
+      <option value="fogHarvesting">Fog Harvesting</option>
+      <option value="watershedManagement">Watershed Management</option>
+      <option value="permeablePavement">Permeable Pavement</option>
+      
+    </select>
+
+    <button type="button" onclick="calculateSavings()">Calculate</button>
+  </form>
+
+  <div id="results"></div>
+
+  <script>
+    function calculateSavings() {
+      // Get user inputs
+      const location = document.getElementById('location').value;
+      const rainfall = parseFloat(document.getElementById('rainfall').value);
+      const propertySize = parseFloat(document.getElementById('propertySize').value);
+      const waterUsage = parseFloat(document.getElementById('waterUsage').value);
+      const selectedTechniques = Array.from(document.getElementById('harvestingTechniques').selectedOptions).map(option => option.value);
+
+      // Calculate savings (simplified calculation for demonstration)
+      const savings = (rainfall * propertySize * 0.8) - waterUsage;
+
+      // Display results
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = `
+        <h2>Results for ${location}</h2>
+        <p>Estimated Water Savings: ${savings.toFixed(2)} gallons per year</p>
+        <p>Recommended Techniques: ${selectedTechniques.join(', ')}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
